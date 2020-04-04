@@ -1,0 +1,85 @@
+.flex {
+  display: flex !important;
+}
+/* preloader */
+.preloader {
+  height: 100vh;
+  width: 100vw;
+  background: white;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  transform: translate(0, -100%);
+  transition: all 0.5s ease-in-out;
+  z-index: 99;
+}
+
+.mostrar_preloader {
+  opacity: 1;
+  transform: translate(0, 0%);
+}
+/*
+.footer_bg_preloader {
+  background: url("../assets/Morado_Footer.svg") no-repeat center center / cover;
+  height: 100vh;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+}
+
+.header_bg_preloader {
+  background: url("../assets/Morado_Head.svg") -223px -603px;
+  height: 218px;
+}*/
+
+.logo_login_preloader {
+  position: absolute;
+  width: 68%;
+  top: 15%;
+  left: 13%;
+}
+
+.bolsa_preloader {
+  position: absolute;
+  top: 45%;
+  left: 5%;
+  width: 64px;
+  animation: animationicons 5s infinite ease-out alternate;
+}
+
+.card_preloader {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  width: 64px;
+  animation: animationicons 5s infinite ease-out alternate;
+}
+
+.moneda_preloader {
+  position: absolute;
+  top: 35%;
+  left: 80%;
+  width: 64px;
+  animation: animationicons 5s infinite ease-out alternate;
+}
+
+@keyframes animationicons {
+  0% {
+    opacity: 0;
+    transform: translate(0%, 100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0%, 0);
+  }
+}
+
+/* preloader */
+
+/* */
+ion-item.item-interactive.ion-invalid.ion-touched {
+  --highlight-background: #eb445a !important;
+}

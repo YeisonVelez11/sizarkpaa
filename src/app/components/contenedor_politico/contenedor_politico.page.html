@@ -1,0 +1,61 @@
+<div
+  class="ion-activatable ripple-parent"
+  [ngClass]="{border_bottom_gris: !quitar_border_bottom}"
+>
+  <h6 class="ion-text-center mb-5px">
+    {{sTipo}} {{iMostrarCantidadPoliticos? '('+aPolitico.length+')':''}}
+  </h6>
+  <!--[pager]="aPolitico.length==1?false:true">-->
+
+  <ion-slides
+    [pager]="false"
+    [options]="{slidesPerView: aPolitico.length==1?1:3}"
+    class="contenedor_slider"
+    [ngClass]="{contenedor_solo_un_elemento: aPolitico.length==1}"
+  >
+    <ion-slide
+      class="d-flex flex-column ion-justify-content-start ion-align-items-center slide"
+      *ngFor="let item of aPolitico"
+      (click)="fn_PoliticoDetail(item)"
+    >
+      <!-- [routerLink]="'/tabs/politicos/detallepolitico/'+item.id">-->
+      <div class="contenedor_imagen_circulo">
+        <ion-avatar>
+          <img [src]="sRutaPoliticos.politico+item.foto" class="img_politico" />
+        </ion-avatar>
+        <div *ngIf="item.calificacion_usuario" class="posicion_estrellas">
+          <ion-icon
+            *ngFor="let estrella of 'x'.repeat(item.calificacion_usuario[0]).split('')"
+            name="star"
+            color="warning"
+          ></ion-icon>
+        </div>
+
+        <ion-avatar class="img_partido_politico">
+          <ion-img
+            [src]="sRutaPoliticos.partido +
+          item.sigla_partido +
+          '.jpg'"
+          ></ion-img>
+        </ion-avatar>
+      </div>
+
+      <h6 class="ion-text-center mt-5px  mb-5px  politicos_jerarquia_menor">
+        {{item.nombre}}
+      </h6>
+      <div class="d-flex">
+        <div>
+          <!--<ion-img
+              class="img_partido_politico"
+              [src]="'./assets/partido_politico.png'"
+            ></ion-img>-->
+        </div>
+        <div>
+          <h6 class="ion-text-center mt-0  mb-0 texto_partido_politico cursiva">
+            {{item.partido}}
+          </h6>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</div>

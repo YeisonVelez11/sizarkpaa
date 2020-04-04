@@ -1,0 +1,53 @@
+<headerhome [titulo]="'Noticias'" [backbutton]="false"></headerhome>
+
+<ion-content [fullscreen]="true">
+  <ion-searchbar
+    debounce="500"
+    (ionChange)="fn_Search($event.detail.value)"
+  ></ion-searchbar>
+
+  <div
+    (click)="fn_NoticiaDetail(item)"
+    class="ion-margin-horizontal ion-padding-top border_bottom_gris pb-5px ion-activatable ripple-parent"
+    *ngFor="let item of aNoticias"
+  >
+    <div class="d-flex ion-justify-content-between">
+      <div class="font-weight-bold">
+        {{item.titulo}}
+      </div>
+      <div class="ion-text-end">
+        <small>{{fn_callFormatTime(item.actualizacion_noticia)}}</small>
+      </div>
+    </div>
+    <div class="ion-margin-top noticia_ellipsis contenedor_noticia">
+      {{item.cuerpo_noticia | ellipsis:95}}<!-- | ellipsis:95 -->
+    </div>
+    <div class=" d-flex w-100 flex-row ion-justify-content-end mt-5px">
+      <ion-img
+        class="thumbs"
+        (click)="fn_SetLikes(item,'like',$event)"
+        [src]="item.like?'../assets/thumb_up.png':'../assets/thumb_up_off.png'"
+      ></ion-img>
+      <ion-img
+        (click)="fn_SetLikes(item,'dislike',$event)"
+        class="thumbs"
+        [src]="item.dislike?'../assets/thumb_down.png':'../assets/thumb_down_off.png'"
+      ></ion-img>
+    </div>
+
+    <ion-ripple-effect *ngIf="disable_riple"></ion-ripple-effect>
+  </div>
+
+  <ion-infinite-scroll
+    threshold="200px"
+    #infinite
+    (ionInfinite)="fn_getNoticias($event)"
+  >
+    <ion-infinite-scroll-content
+      #infinite
+      loadingSpinner="bubbles"
+      loadingText="Cargando más noticias..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

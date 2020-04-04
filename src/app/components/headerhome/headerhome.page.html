@@ -1,0 +1,113 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar style="background:white">
+    <ion-buttons slot="start" class="back-button" *ngIf="backbutton">
+      <ion-back-button text="" defaultHref color="grisoscuro"></ion-back-button>
+    </ion-buttons>
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="flex ion-align-content-end"> </ion-col>
+        <ion-col class="flex ion-justify-content-center ion-align-items-center">
+          <ion-title
+            color="grisoscuro"
+            class="ion-text-center font-weight-bold"
+            style="font-size: 16px;"
+            >{{titulo}}</ion-title
+          >
+        </ion-col>
+        <ion-col class="flex ion-justify-content-end ion-align-items-center">
+          <ion-buttons
+            class="flex ion-justify-content-end"
+            style="margin-right: 10px;"
+          >
+            <div class="ion-activatable ripple-parent">
+              <ion-img src="./assets/icon_user.svg" style="width: 40px;">
+              </ion-img>
+              <ion-ripple-effect></ion-ripple-effect>
+            </div>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+
+ -->
+
+<ion-header [translucent]="true">
+  <ion-toolbar style="background:white">
+    <ion-buttons slot="start">
+      <ion-back-button
+        text=""
+        *ngIf="backbutton"
+        defaultHref
+        color="grisoscuro"
+      ></ion-back-button>
+      <ion-img
+        src="./assets/logo.png"
+        class="d-block"
+        style="width:43px;"
+      ></ion-img>
+    </ion-buttons>
+    <ion-title class="ion-text-center" color="grisoscuro" mode="ios"
+      >{{titulo}}</ion-title
+    >
+
+    <ion-buttons slot="end" style="margin-right: 10px;">
+      <div
+        class="ion-activatable ripple-parent"
+        (click)="fn_navigate('/perfil')"
+      >
+        <ion-img
+          src="./assets/icon_user.svg"
+          style="width: 40px;height: 40px !important;"
+        >
+        </ion-img>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!--
+<ion-header [translucent]="true">
+  <ion-toolbar style="background:white">
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="flex ion-align-content-end">
+          <ion-buttons class="flex ion-justify-content-end">
+            <ion-img
+              src="./assets/logo.png"
+              style="width:43px;"
+              [ngStyle]="{'margin-left': backbutton?'40px':'5px' }"
+            ></ion-img>
+          </ion-buttons>
+        </ion-col>
+        <ion-col class="flex ion-justify-content-center ion-align-items-center">
+          <ion-title class="ion-text-center">{{titulo}}</ion-title>
+        </ion-col>
+        <ion-col class="flex ion-justify-content-end">
+          <ion-buttons
+            class="flex ion-justify-content-end"
+            style="margin-right: 10px;"
+          >
+            <div
+              class="ion-activatable ripple-parent"
+              (click)="fn_navigate('/perfil')"
+            >
+              <ion-img
+                src="./assets/icon_user.svg"
+                style="width: 40px;height: 40px !important;"
+              >
+              </ion-img>
+              <ion-ripple-effect></ion-ripple-effect>
+            </div>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+
+-->

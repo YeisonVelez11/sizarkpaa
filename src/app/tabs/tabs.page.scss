@@ -1,0 +1,19 @@
+@import "../../variables.scss";
+
+.tab-selected {
+  opacity: 1 !important;
+  color: $gris_oscuro;
+}
+
+ion-tab-button ion-label {
+  font-size: 14px !important;
+}
+
+ion-tab-button {
+  color: $gris_claro;
+  opacity: 1;
+}
+
+.tab-disabled {
+  opacity: 0.5;
+}

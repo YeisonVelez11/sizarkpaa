@@ -1,0 +1,131 @@
+<headerhome [titulo]="'Registro'" [backbutton]="true"></headerhome>
+
+<ion-content class="has-header fondo_krazis altura_sin_cabecera h-100">
+  <div
+    class="d-flex ion-align-items-center ion-justify-content-center ion-margin-top"
+  >
+    <form [formGroup]="oFormRegistro" class="w-80">
+      <ion-item mode="md">
+        <ion-label position="floating">Nombres</ion-label>
+        <ion-icon name="person" color="grisoscuro" slot="start"></ion-icon>
+
+        <ion-input formControlName="nombres" type="text"></ion-input>
+        <span
+          class="texto-pequeno error pos_texto_error"
+          *ngIf="oFormRegistro.controls.nombres.invalid && (oFormRegistro.controls.nombres.dirty && oFormRegistro.controls.nombres.touched)"
+          >No es un nombre válido</span
+        >
+      </ion-item>
+
+      <ion-item mode="md" class="ion-margin-top">
+        <ion-label position="floating">Correo</ion-label>
+        <ion-icon name="mail" color="grisoscuro" slot="start"></ion-icon>
+
+        <ion-input formControlName="correo" type="email"></ion-input>
+        <span
+          class="texto-pequeno error pos_texto_error"
+          *ngIf="oFormRegistro.controls.correo.invalid && (oFormRegistro.controls.correo.dirty && oFormRegistro.controls.correo.touched)"
+          >Correo inválido</span
+        >
+      </ion-item>
+
+      <ion-item mode="md" class="ion-margin-top">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-icon name="lock-closed" color="grisoscuro" slot="start"></ion-icon>
+
+        <ion-input
+          type="text"
+          formControlName="contrasena"
+          [ngStyle]="{'-webkit-text-security':show_contransena?'disc':'none'}"
+        ></ion-input>
+        <ion-img
+          style="width: 26px;
+          /* height: 26px; */
+          margin-top: 16px"
+          (click)="show_contransena=!show_contransena"
+          src="./assets/icono_view.png"
+          slot="end"
+          class="ion-no-margin icon_right"
+        ></ion-img>
+        <span
+          class="texto-pequeno error pos_texto_error"
+          *ngIf="oFormRegistro.controls.contrasena.invalid && (oFormRegistro.controls.contrasena.dirty && oFormRegistro.controls.contrasena.touched)"
+          >Este campo es requerido y mínimo de 6 caracteres</span
+        >
+      </ion-item>
+
+      <ion-item mode="md" class="ion-margin-top">
+        <ion-label>Región</ion-label>
+        <ion-icon name="map" color="grisoscuro" slot="start"></ion-icon>
+
+        <ion-select
+          (ionChange)="fn_LoadProvincias($event.detail.value)"
+          formControlName="region"
+          value="brown"
+          okText="Aceptar"
+          cancelText="Cancelar"
+        >
+          <ion-select-option
+            [value]="item.region"
+            *ngFor="let item of aRegiones"
+            >{{item.region}}</ion-select-option
+          >
+        </ion-select>
+        <span
+          class="texto-pequeno error pos_texto_error"
+          *ngIf="oFormRegistro.controls.region.invalid && (oFormRegistro.controls.region.dirty && oFormRegistro.controls.region.touched)"
+          >Este campo es requerido</span
+        >
+      </ion-item>
+
+      <ion-note *ngIf="oFormRegistro.controls.region.valid" class="region"
+        >{{oFormRegistro.controls.region.value}}</ion-note
+      >
+
+      <ion-item mode="md" class="ion-margin-top">
+        <ion-label>Comuna</ion-label>
+        <ion-icon name="location" color="grisoscuro" slot="start"></ion-icon>
+
+        <ion-select
+          formControlName="comuna"
+          value="brown"
+          okText="Aceptar"
+          cancelText="Cancelar"
+        >
+          <ion-select-option
+            [value]="item.comuna"
+            *ngFor="let item of aComunas[0]?.comunas"
+            >{{item.comuna}}</ion-select-option
+          >
+        </ion-select>
+        <span
+          class="texto-pequeno error pos_texto_error"
+          *ngIf="oFormRegistro.controls.comuna.invalid && (oFormRegistro.controls.comuna.dirty && oFormRegistro.controls.comuna.touched)"
+          >Este campo es requerido</span
+        >
+      </ion-item>
+      <ion-note *ngIf="oFormRegistro.controls.comuna.valid" class="region"
+        >{{oFormRegistro.controls.comuna.value}}</ion-note
+      >
+
+      <div class="d-flex ion-justify-content-center ion-margin-top flex-column">
+        <ion-button
+          round="true"
+          size="large"
+          color="grisoscuro"
+          expand="block"
+          (click)="fn_submit(oFormRegistro)"
+          class="w-100 ion-text-capitalize"
+        >
+          <ion-icon name="log-in-outline" color="light" slot="start"></ion-icon>
+
+          Crear Cuenta</ion-button
+        >
+      </div>
+      <ion-note class="condiciones ion-text-center"
+        >Al crear una cuenta, tu estas aceptando
+        <span class="underline">Nuestros Términos y Condiciones</span></ion-note
+      >
+    </form>
+  </div>
+</ion-content>

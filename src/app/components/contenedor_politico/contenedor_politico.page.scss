@@ -1,0 +1,74 @@
+h6 {
+  /*font-size: 14px !important;*/
+  font-size: 17px !important;
+}
+
+ion-avatar {
+  width: 80px;
+  height: 80px;
+}
+
+h6.politicos_jerarquia_menor {
+  /*font-size: 11px !important;*/
+  font-size: 14px !important;
+  line-height: 1;
+}
+
+h6.texto_partido_politico {
+  font-size: 12px !important;
+}
+
+.contenedor_slider {
+  /*height: 152px !important;*/
+  /*height: 197px !important;*/
+  height: 166px !important;
+}
+
+.img_politico {
+  /*width: 64px;
+    height: 64px;*/
+  width: 80px;
+  height: 80px;
+}
+
+.img_partido_politico {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 38px;
+  right: -5px;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  /*width: 20px;
+    height: 20px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5px;*/
+}
+
+.slide {
+  margin: 0px 0px;
+}
+
+.contenedor_imagen_circulo {
+  width: fit-content;
+  margin: 0 auto;
+  position: relative;
+}
+.contenedor_solo_un_elemento {
+  height: 143px !important;
+}
+
+.posicion_estrellas {
+  position: absolute;
+  bottom: -8px;
+  transform: translate(-50%, 0);
+  left: 50%;
+  width: 90px;
+
+  ion-icon {
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,400 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@import "./variables.scss";
+
+/*@font-face {
+  font-family: "Arial Narrow Bold";
+  src: url("./assets/fonts/ARIALNB.ttf");
+}*/
+@font-face {
+  font-family: "Roboto Light";
+  src: url("./assets/fonts/Roboto-Light.ttf");
+}
+
+hr {
+  background: #f5f4fa;
+}
+
+*,
+html {
+  font-family: "Roboto Light" !important;
+}
+
+.flex,
+.d-flex {
+  display: flex !important;
+}
+
+.w-80 {
+  width: 80%;
+}
+.w-90 {
+  width: 90%;
+}
+/*.background-morado-top {
+  --background: url(./assets/Morado_Head.svg) -223px -603px;
+}
+
+.background-morado-top-corto {
+
+  --background: url(./assets/Morado_Head.svg) -223px -657px;
+  background: url(./assets/Morado_Head.svg) -223px -657px;
+}
+
+.background-morado-bottom {
+
+  --background: url(./assets/Bg_Login.png) no-repeat center center / cover;
+}*/
+.h-100 {
+  height: 100%;
+}
+.h-50 {
+  height: 50%;
+}
+
+.altura_sin_cabecera {
+  height: calc(100vh - 56px) !important;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.centrardo-vertical {
+  position: absolute;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+.sombra {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.centrado-horizontal {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.centrado-perfecto {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.p-relative {
+  position: relative;
+}
+.ion-text-bold,
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.ion-text-500 {
+  font-weight: 500;
+}
+
+.w-100 {
+  width: 100%;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-center {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.m-10 {
+  margin: 10px;
+}
+.line-height-1 {
+  line-height: 1;
+}
+.mt-0 {
+  margin-top: 0px !important;
+}
+.mb-0 {
+  margin-bottom: 0px !important;
+}
+.ml-0 {
+  margin-left: 0px !important;
+}
+.mr-0 {
+  margin-right: 0px !important;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.mt-40 {
+  margin-top: 40px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.pb-0 {
+  padding-bottom: 0px;
+}
+
+.pb-0 {
+  padding-bottom: 0px;
+}
+.pl-0 {
+  padding-left: 0px;
+}
+.pr-0 {
+  padding-right: 0px;
+}
+.pt-0 {
+  padding-top: 0px;
+}
+
+.m-auto {
+  margin: 0 auto !important;
+}
+
+.d-block {
+  display: block !important;
+}
+.d-inline {
+  display: inline !important;
+}
+.d-inline-block {
+  display: inline-block !important;
+}
+.flex-row {
+  flex-direction: row !important;
+}
+
+.mt-5px {
+  margin-top: 5px !important;
+}
+.mb-5px {
+  margin-bottom: 5px !important;
+}
+.ml-5px {
+  margin-left: 5px !important;
+}
+.mr-5px {
+  margin-right: 5px !important;
+}
+
+.pt-5px {
+  padding-top: 5px !important;
+}
+.pb-5px {
+  padding-bottom: 5px !important;
+}
+.pl-5px {
+  padding-left: 5px !important;
+}
+.pr-5px {
+  padding-right: 5px !important;
+}
+
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.my-0 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.font-weight-800 {
+  font-weight: 800;
+}
+
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+}
+
+.border_top_gris {
+  border-top: 11px solid #f5f4fa;
+}
+
+.border_gris {
+  border-top: 2px solid #f5f4fa;
+  border-bottom: 2px solid #f5f4fa;
+}
+
+.border_bottom_gris {
+  border-bottom: 1px solid #f5f4fa;
+}
+.border_right_gris {
+  border-right: 1px solid #f5f4fa;
+}
+.border_left_gris {
+  border-left: 1px solid #f5f4fa;
+}
+.d-block {
+  display: block;
+}
+.transition {
+  transition: all 1s ease-in-out;
+}
+.loading {
+  background: red;
+  transition: all 5s ease-in-out;
+}
+.cursiva {
+  font-style: italic !important;
+}
+.d-none {
+  display: none !important;
+}
+
+.d-flex.d-none,
+[hidden] {
+  display: none !important;
+}
+
+.back-button {
+  position: absolute;
+  top: 4px;
+  left: -5px;
+  color: $gris_claro;
+}
+
+ion-content {
+  background-color: white !important;
+}
+ion-item {
+  --border-color: #b6b6b6 !important;
+  /*--highlight-height: 0;*/
+  --highlight-background: var(--ion-color-grisoscuro);
+  /*--background: none;*/
+  background: rgba(var(--ion-color-primary-rgb), 0.06);
+  border-radius: 4px;
+  ion-label {
+    /*color: #777 !important;*/
+    color: #b6b6b6 !important; /*var(--ion-color-moradobutton) !important;*/
+    font-weight: 600;
+    font-size: 1rem !important;
+  }
+  ion-input {
+    --color: #777;
+  }
+}
+/*
+  ion-item,
+  ion-list {
+    background: transparent !important;
+    --background: transparent !important;
+  }*/
+
+.bg_button {
+  --background: linear-gradient(
+    83deg,
+    rgb(73, 75, 158) 0%,
+    rgb(149, 92, 223) 69%,
+    rgb(183, 98, 251) 100%
+  );
+
+  width: 190px;
+  height: 55px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.texto-pequeno {
+  font-size: 0.8rem !important;
+}
+
+.error {
+  border-color: #dc3545 !important;
+  color: #dc3545 !important;
+}
+.error-color {
+  color: #dc3545 !important;
+}
+
+.pos_texto_error {
+  width: 100%;
+  position: absolute;
+  left: -50%;
+  bottom: -1px;
+  transform: translate(50%, 0);
+  text-align: center;
+}
+
+ion-item.item-interactive.ion-invalid.ion-touched {
+  --highlight-background: #eb445a !important;
+}
+
+.swiper-pagination-bullet-active {
+  --bullet-background-active: $gris_claro !important;
+}
+
+.swiper-pagination-bullet {
+  --bullet-background: gray !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  --bullet-background-active: #424242 !important;
+}
+
+.alert-radio-label {
+  white-space: pre-line !important;
+  font-size: 14px !important;
+}
+
+/* krazis  */
+
+.toast-message {
+  color: white !important;
+}
+
+ion-item {
+  border: 1px solid #bbbbbb !important;
+}
+
+:host(.item-interactive.ion-invalid) {
+  --highlight-background: #eb445a !important;
+}
+
+.fondo_krazis {
+  /*--background: url(./assets/Morado_Head.svg) no-repeat center center / cover;*/
+  /*--background: url(./assets/Morado_Head.svg) no-repeat 73% 29% / cover;*/
+  --background: url("./assets/background.png") no-repeat center center / cover;
+}
+
+input {
+  font-size: 14px !important;
+}
+
+ion-back-button {
+  color: gray;
+}

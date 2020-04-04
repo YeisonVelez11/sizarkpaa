@@ -1,0 +1,69 @@
+<headerhome [titulo]="'Políticos'" [backbutton]="false"></headerhome>
+
+<ion-content [fullscreen]="true" class="ion-padding-horizontal">
+  <small class="d-block ion-margin-top" style="font-size: 80%;"
+    >Tu Comuna de residencia es
+    <span class="font-weight-bold">{{oUsuario.comuna}}</span>
+    ({{oUsuario.region}}), por lo cual se muestran sus políticos
+  </small>
+  <!-- Presidente-->
+  <contenedor_politico
+    [sTipo]="'Presidente'"
+    [tipoMinus]="'presidente'"
+    [aPolitico]="aPoliticos.Presidente?aPoliticos.Presidente:[]"
+    [iMostrarCantidadPoliticos]="false"
+  ></contenedor_politico>
+
+  <!-- fin presidencia-->
+
+  <contenedor_politico
+    [sTipo]="'Ministros'"
+    [tipoMinus]="'ministro'"
+    [aPolitico]="aPoliticos.Ministro?aPoliticos.Ministro:[]"
+    [iMostrarCantidadPoliticos]="true"
+  ></contenedor_politico>
+  <!-- senadores-->
+  <contenedor_politico
+    [sTipo]="'Senadores'"
+    [tipoMinus]="'senador'"
+    [aPolitico]="aPoliticos.Senador?aPoliticos.Senador:[]"
+    [iMostrarCantidadPoliticos]="true"
+  ></contenedor_politico>
+  <!-- fin senadores-->
+
+  <!--diputado-->
+  <contenedor_politico
+    [sTipo]="'Diputados'"
+    [tipoMinus]="'diputado'"
+    [aPolitico]="aPoliticos.Diputado?aPoliticos.Diputado:[]"
+    [iMostrarCantidadPoliticos]="true"
+  ></contenedor_politico>
+  <!-- fin diptuado-->
+  <!-- alcaldia-->
+
+  <!-- alcaldia-->
+  <div class="ion-activatable ripple-parent ion-margin-bottom">
+    <div class="d-flex w-100">
+      <div class="w-100 border_right_gris">
+        <contenedor_politico
+          [sTipo]="'Intendente'"
+          [tipoMinus]="'intendente'"
+          [aPolitico]="aPoliticos.Intendente?aPoliticos.Intendente:[]"
+          [iMostrarCantidadPoliticos]="false"
+          [quitar_border_bottom]="true"
+        ></contenedor_politico>
+      </div>
+      <div class="w-100">
+        <contenedor_politico
+          [sTipo]="'Alcalde'"
+          [tipoMinus]="'alcalde'"
+          [aPolitico]="aPoliticos.Alcalde?aPoliticos.Alcalde:[]"
+          [iMostrarCantidadPoliticos]="false"
+          [quitar_border_bottom]="true"
+        ></contenedor_politico>
+      </div>
+    </div>
+  </div>
+
+  <!-- fin alcaldia-->
+</ion-content>

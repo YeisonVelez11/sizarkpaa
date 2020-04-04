@@ -1,0 +1,79 @@
+<ion-content class="fondo_krazis ">
+  <div class="h-100 d-flex ion-align-items-center ion-justify-content-center">
+    <form [formGroup]="oFormLogin" class="w-80">
+      <ion-img src="./assets/logo.png" class="logo"></ion-img>
+      <ion-item mode="md">
+        <ion-label position="floating">Correo</ion-label>
+        <ion-icon name="mail" color="grisoscuro" slot="start"></ion-icon>
+
+        <ion-input formControlName="correo" type="text"></ion-input>
+        <span
+          class="texto-pequeno error pos_texto_error"
+          *ngIf="oFormLogin.controls.correo.invalid && (oFormLogin.controls.correo.dirty && oFormLogin.controls.correo.touched)"
+          >Correo inválido</span
+        >
+      </ion-item>
+
+      <ion-item mode="md" class="ion-margin-top">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-icon name="lock-closed" color="grisoscuro" slot="start"></ion-icon>
+
+        <ion-input
+          type="text"
+          formControlName="contrasena"
+          [ngStyle]="{'-webkit-text-security':show_contransena?'disc':'none'}"
+        ></ion-input>
+        <ion-img
+          style="width: 26px;
+          /* height: 26px; */
+          margin-top: 16px"
+          (click)="show_contransena=!show_contransena"
+          src="./assets/icono_view.png"
+          slot="end"
+          class="ion-no-margin icon_right"
+        ></ion-img>
+        <span
+          class="texto-pequeno error pos_texto_error"
+          *ngIf="oFormLogin.controls.contrasena.invalid && (oFormLogin.controls.contrasena.dirty && oFormLogin.controls.contrasena.touched)"
+          >Este campo es requerido</span
+        >
+      </ion-item>
+
+      <div class="d-flex ion-justify-content-center ion-margin-top flex-column">
+        <ion-button
+          round="true"
+          size="large"
+          color="grisoscuro"
+          expand="block"
+          (click)="fn_submit(oFormLogin)"
+          class="w-100 ion-text-capitalize"
+        >
+          <ion-icon name="log-in-outline" color="light" slot="start"></ion-icon>
+          Ingresar</ion-button
+        >
+
+        <ion-button
+          expand="full"
+          color="primary"
+          class="ion-text-lowercase"
+          style="height: 43px;
+          font-size: 16px !important;"
+        >
+          Ingresa con facebook
+          <ion-icon name="logo-facebook" color="light" slot="start"></ion-icon>
+        </ion-button>
+
+        <div
+          class="w-100 ion-justify-content-center ion-activatable ripple-parent"
+          routerLink="/registro"
+        >
+          <ion-note class="d-block w-100 ion-text-center no_cuenta">
+            ¿Aún no tienes cuenta? Registrate
+            <span class="ion-text-bold underline">aquí</span>
+          </ion-note>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+      </div>
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,43 @@
+<headerhome [titulo]="oNoticia.titulo" [backbutton]="true"></headerhome>
+
+<ion-content [fullscreen]="true">
+  <div
+    class="ion-margin-horizontal ion-padding-top  ion-margin-top pb-5px border_bottom_gris"
+  >
+    <div class="d-flex ion-justify-content-between border_bottom_gris">
+      <div class="font-weight-bold">
+        {{oNoticia.titulo}}
+      </div>
+      <div class="ion-text-end">
+        <small>{{fn_callFormatTime(oNoticia.actualizacion_noticia)}}</small>
+      </div>
+    </div>
+
+    <div
+      class="ion-margin-top ion-padding-top noticia_ellipsis contenedor_noticia"
+    >
+      {{oNoticia.cuerpo_noticia }}<!-- | ellipsis:95 -->
+    </div>
+    <hr />
+
+    <div class="ion-margin-top" *ngIf="oNoticia.foto">
+      <ion-img
+        [src]="base_imagen+oNoticia.foto"
+        class="max-width-100 imagen_noticia"
+      ></ion-img>
+    </div>
+    <hr />
+    <div class=" d-flex w-100 flex-row ion-justify-content-end mt-5px">
+      <ion-img
+        class="thumbs"
+        (click)="fn_SetLikes(oNoticia,'like')"
+        [src]="oNoticia.like?'../assets/thumb_up.png':'../assets/thumb_up_off.png'"
+      ></ion-img>
+      <ion-img
+        (click)="fn_SetLikes(oNoticia,'dislike')"
+        class="thumbs"
+        [src]="oNoticia.dislike?'../assets/thumb_down.png':'../assets/thumb_down_off.png'"
+      ></ion-img>
+    </div>
+  </div>
+</ion-content>

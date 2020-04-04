@@ -1,0 +1,152 @@
+<headerhome [titulo]="oPolitico?.nombre" [backbutton]="true"></headerhome>
+
+<ion-content class="d-flex altura_sin_cabecera ion-padding-horizontal">
+  <div class=" border_bottom_gris">
+    <h5 class="ion-text-center ">
+      {{oPolitico.cargo}}
+    </h5>
+    <ion-avatar class="m-auto imagen_politico">
+      <img [src]="sRutaPoliticos.politico+oPolitico?.foto" />
+    </ion-avatar>
+    <h6 class="ion-text-center  ">
+      {{oPolitico?.nombre}}
+    </h6>
+
+    <ion-note
+      class="politicos_partido ion-text-center w-100 d-block"
+      *ngIf="oPolitico.cargo=='Alcalde' && oPolitico.comuna"
+    >
+      {{oPolitico?.comuna}} ({{oPolitico?.region}})
+    </ion-note>
+
+    <ion-note
+      class="politicos_partido ion-text-center  w-100 d-block"
+      *ngIf="oPolitico.cargo=='Intendente' || oPolitico.cargo=='Senador' || oPolitico.cargo=='Diputado' && oPolitico.region"
+    >
+      {{oPolitico?.region}}
+    </ion-note>
+
+    <ion-note
+      class="politicos_partido ion-text-center w-100 d-block"
+      *ngIf="oPolitico.cargo=='Intendente' ||  oPolitico.cargo=='Ministro' && oPolitico.periodo"
+    >
+      Desde {{oPolitico?.periodo}}
+    </ion-note>
+
+    <ion-note
+      class="politicos_partido ion-text-center w-100 d-block"
+      *ngIf="oPolitico.cargo=='Diputado' || oPolitico.cargo=='Presidente' && oPolitico.periodo"
+    >
+      {{oPolitico?.periodo}}
+    </ion-note>
+
+    <ion-note
+      class="politicos_partido ion-text-center w-100 d-block ion-margin-top"
+      *ngIf="oPolitico.cargo=='Ministro'  && oPolitico.periodo"
+    >
+      {{oPolitico?.cargo_ministerial}}
+    </ion-note>
+
+    <ion-note
+      class="politicos_partido ion-text-center w-100 d-block ion-margin-top"
+      *ngIf="oPolitico.cargo=='Diputado' && oPolitico.bancada"
+    >
+      {{oPolitico?.bancada}}
+    </ion-note>
+
+    <ion-note
+      class="politicos_partido ion-text-center w-100 d-block"
+      *ngIf="oPolitico.cargo=='Diputado' && oPolitico.distrito"
+    >
+      Distrito {{oPolitico?.distrito}}
+    </ion-note>
+
+    <div
+      class="d-flex ion-justify-content-around ion-margin-top"
+      *ngIf="oPolitico.cargo=='Senador'"
+    >
+      <div>
+        <ion-note
+          class="politicos_partido ion-text-center w-100 d-block"
+          *ngIf="oPolitico.correo"
+        >
+          <ion-icon name="mail-outline"></ion-icon>
+          {{oPolitico?.correo}}
+        </ion-note>
+      </div>
+      <div>
+        <ion-note
+          class="politicos_partido ion-text-center w-100 d-block"
+          *ngIf="oPolitico.telefono"
+        >
+          <ion-icon name="call-outline"></ion-icon>
+          {{oPolitico?.telefono}}
+        </ion-note>
+      </div>
+    </div>
+
+    <div class="d-flex ion-justify-content-center ion-align-items-center">
+      <ion-avatar class="img_partido m-0">
+        <img
+          [src]="sRutaPoliticos.partido +
+        oPolitico?.sigla_partido +
+        '.jpg'"
+        />
+      </ion-avatar>
+      <h6 class="ion-text-center politicos_partido cursiva d-inline-block">
+        {{oPolitico?.partido}}
+      </h6>
+    </div>
+  </div>
+  <div class=" d-flex flex-column " style="height: 40%;">
+    <h4
+      class="mt-0 ion-text-center ion-margin-bottom ion-padding-top ion-padding-bottom"
+    >
+      Valoración
+    </h4>
+
+    <ion-note class="politicos_partido ion-margin-start">
+      Evalua a <span class="font-weight-bold">{{oPolitico?.nombre}}</span>
+    </ion-note>
+
+    <div
+      class="d-flex ion-justify-content-around w-100 ion-margin-vertical ion-padding-horizontal "
+    >
+      <div
+        class="contenedor_estrellas"
+        *ngFor="let item of [1,2,4,5,6]; let i=index;"
+        (click)="fn_SetCalificacion(i)"
+      >
+        <ion-icon
+          name="star"
+          [color]="i<=numestrellas?'warning':'grisoscuro'"
+          class="estrella transition"
+          [ngClass]="{'animar_estrellas': i<=numestrellas }"
+        ></ion-icon>
+      </div>
+    </div>
+    <ion-note class="politicos_partido ion-margin-start ">
+      <span class="font-weight-bold">{{oPolitico?.nombre}}</span> Tiene una
+      calificación de:
+    </ion-note>
+    <div class="d-flex ion-justify-content-center ion-align-items-center">
+      <h1 class="d-inline-block mr-5px" style="font-size: 60px;">
+        <span class="font-weight-bold"
+          >{{oPolitico.calificacion_promedio?oPolitico.calificacion_promedio:'0'}}</span
+        >
+      </h1>
+      <h6 class="d-inline-block">Puntos</h6>
+    </div>
+
+    <ion-note class="ion-text-center" *ngIf="!oPolitico.calificacion_promedio"
+      >Aún no ha sido calificado
+    </ion-note>
+    <ion-note
+      class="ion-text-center politicos_partido"
+      *ngIf="oPolitico.calificacion_promedio"
+    >
+      Se le ha calificado {{oPolitico.calificacion_numero_encuestas}}
+      ve{{oPolitico.calificacion_numero_encuestas==1?'z':'ces'}}
+    </ion-note>
+  </div>
+</ion-content>
