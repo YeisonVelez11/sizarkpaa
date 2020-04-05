@@ -3,7 +3,7 @@ import {
   Validators,
   FormBuilder,
   FormGroup,
-  FormControl
+  FormControl,
 } from "@angular/forms";
 import { ServicesProvider } from "../../providers/services";
 import { SERVICES } from "../../config/webservices";
@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-login",
   templateUrl: "./login.page.html",
-  styleUrls: ["./login.page.scss"]
+  styleUrls: ["./login.page.scss"],
 })
 export class LoginPage implements OnInit {
   oFormLogin: any;
@@ -28,16 +28,18 @@ export class LoginPage implements OnInit {
   ) {
     this.oFormLogin = this.fb.group({
       correo: [null, [Validators.required, Validators.email]],
-      contrasena: [null, [Validators.required]]
+      contrasena: [null, [Validators.required]],
     });
   }
-
+  ionViewDidEnter() {
+    this.oFormLogin.reset();
+  }
   //funcion para ingresar un usuario
   fn_submit(formGroup: any) {
     if (formGroup.valid) {
       let oLogin: any = {
         correo: formGroup.get("correo").value,
-        contrasena: formGroup.get("contrasena").value
+        contrasena: formGroup.get("contrasena").value,
       };
       this.ServicesProvider.preloaderOn();
       this.ServicesProvider.post(SERVICES.LOGIN, oLogin).then(
@@ -45,7 +47,7 @@ export class LoginPage implements OnInit {
           if (datos.ok) {
             Promise.all([
               this.ServicesProvider.setStorage("_knt", datos.token),
-              this.ServicesProvider.setStorage("usuario", datos.usuario)
+              this.ServicesProvider.setStorage("usuario", datos.usuario),
             ]).then((data) => {
               this.router.navigate(["/tabs/noticias"]);
             });

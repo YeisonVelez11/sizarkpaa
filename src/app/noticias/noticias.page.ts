@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-noticias",
   templateUrl: "noticias.page.html",
-  styleUrls: ["noticias.page.scss"]
+  styleUrls: ["noticias.page.scss"],
 })
 export class NoticiasPage implements OnInit {
   @ViewChild("infinite", { static: true }) infinite: any;
@@ -35,8 +35,8 @@ export class NoticiasPage implements OnInit {
     this.router.navigate([
       "/tabs/noticias/detallenoticia/" + item._id,
       {
-        queryParams: JSON.stringify(item)
-      }
+        queryParams: JSON.stringify(item),
+      },
     ]); /*{
       queryParams: item
     });*/
@@ -46,8 +46,8 @@ export class NoticiasPage implements OnInit {
     this.aNoticias = aAuxNoticias.slice(0);
     this.aNoticias = this.aNoticias.filter(
       (noticia) =>
-        noticia.titulo.search(value) != -1 ||
-        noticia.noticia.search(value) != -1
+        noticia.titulo.toLowerCase().search(value.toLowerCase()) != -1 ||
+        noticia.cuerpo_noticia.toLowerCase().search(value.toLowerCase()) != -1
     );
   }
 
@@ -72,7 +72,7 @@ export class NoticiasPage implements OnInit {
     let paginacion = `?desde=${this.skip}&limite=${this.limite}`;
     this.ServicesProvider.preloaderOn();
     this.ServicesProvider.post(SERVICES.LISTAR_NOTICIA + paginacion, {
-      _id: this.oUsuario._id
+      _id: this.oUsuario._id,
     }).then(
       (data: any) => {
         if (data.ok) {
@@ -87,6 +87,7 @@ export class NoticiasPage implements OnInit {
             }
           } else {
             this.aNoticias.push(...data.data);
+            aAuxNoticias = this.aNoticias;
           }
         } else {
           this.ServicesProvider.fn_toast("error", data.err.message);
@@ -107,7 +108,7 @@ export class NoticiasPage implements OnInit {
       tipo: key,
       id_usuario: this.oUsuario._id,
       id_noticia: item._id,
-      borrar_tipos_like: item.borrar_tipos_like
+      borrar_tipos_like: item.borrar_tipos_like,
     }).then(
       (data: any) => {
         if (data.ok) {

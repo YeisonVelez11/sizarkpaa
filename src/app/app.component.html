@@ -1,3 +1,12 @@
+<div
+  class="position-fixed backdrop_preload w-100 h-100 flex-center"
+  [ngClass]="{ 'd-none': !global.preloader }"
+>
+  <div class="avatar sombra animated infinite pulse">
+    <img class="logo_circulo" src="./assets/logo.png" />
+  </div>
+  <div class="texto_cargando">Cargando...</div>
+</div>
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

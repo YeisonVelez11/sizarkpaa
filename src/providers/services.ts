@@ -4,13 +4,13 @@ import {
   HttpRequest,
   HttpHeaders,
   HttpParams,
-  HttpClient
+  HttpClient,
 } from "@angular/common/http";
 import { Router } from "@angular/router";
 
 import { SERVICES, URL } from "../config/webservices";
 import { GlobalProvider } from "./globalvariable";
-import { LoadingController } from "@ionic/angular";
+//import { LoadingController } from "@ionic/angular";
 import * as moment from "moment";
 moment.locale("es");
 
@@ -19,11 +19,12 @@ import {
   Validators,
   FormGroup,
   FormControl,
-  FormBuilder
+  FormBuilder,
 } from "@angular/forms";
 //import { ServicesProvider } from '../../providers/services';
 import { ToastController } from "@ionic/angular";
 import { Storage } from "@ionic/storage";
+import { Message } from "@angular/compiler/src/i18n/i18n_ast";
 
 //import {  MenuController } from '@ionic/angular';
 
@@ -33,7 +34,7 @@ export class ServicesProvider {
   preload: any;
   isLoading: boolean = false;
   constructor(
-    private loadingController: LoadingController,
+    //private loadingController: LoadingController,
     private httpClient: HttpClient,
     private toastController: ToastController,
     private storage: Storage,
@@ -49,7 +50,7 @@ export class ServicesProvider {
   get(url: string) {
     return new Promise((resolve, reject) => {
       const headers = new HttpHeaders({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
       });
       this.httpClient.get(url, { headers: headers }).subscribe(
         (response) => {
@@ -62,6 +63,8 @@ export class ServicesProvider {
           }
         },
         (fail) => {
+          this.fn_popupError();
+
           try {
             fail = fail.json();
           } catch (error) {
@@ -79,7 +82,7 @@ export class ServicesProvider {
     return new Promise((resolve, reject) => {
       const body = new HttpParams(query);
       let jsonHeaders: any = {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
       };
       if (_knt) {
         jsonHeaders.token = _knt;
@@ -90,7 +93,7 @@ export class ServicesProvider {
       }
 
       let httpParams = new HttpParams();
-      Object.keys(query).forEach(function(key) {
+      Object.keys(query).forEach(function (key) {
         httpParams = httpParams.set(key, query[key]);
       });
       this.httpClient
@@ -106,6 +109,8 @@ export class ServicesProvider {
             }
           },
           (fail) => {
+            this.fn_popupError();
+
             try {
               fail = fail.json();
             } catch (error) {
@@ -117,8 +122,9 @@ export class ServicesProvider {
     });
   }
 
-  async fn_toast(tipo: string, texto: string, duration?: any) {
-    let duracion = 3000;
+  async fn_toast(tipo: string, texto: string, duration?: any, position?: any) {
+    let duracion = 4000;
+    position = position || "top";
     if (duration) {
       duracion = duration;
     }
@@ -131,17 +137,21 @@ export class ServicesProvider {
     } else if (tipo == "error") {
       tipocss = "danger";
       header = "Error!";
+      if (texto.split(":").length > 1) {
+        texto = texto.split(":")[2];
+      }
     }
     if (tipo == "warning" || tipo == "advertencia") {
       tipocss = "warning";
       header = "Advertencia";
     }
+
     const toast = await this.toastController.create({
       message: texto,
-      position: "top",
+      position: position,
       header: header,
       color: tipocss,
-      duration: duracion
+      duration: duracion,
     });
     toast.present();
   }
@@ -186,14 +196,17 @@ export class ServicesProvider {
   }
 
   async preloaderOff() {
-    if (this.isLoading) {
+    this.global.preloader = false;
+
+    /*if (this.isLoading) {
       this.isLoading = false;
       return await this.loadingController.dismiss();
     }
-    return null;
+    return null;*/
   }
   async preloaderOn(mensaje?: string) {
-    if (!mensaje) {
+    this.global.preloader = true;
+    /*if (!mensaje) {
       mensaje = "Espere por favor...";
     }
     this.isLoading = true;
@@ -209,7 +222,7 @@ export class ServicesProvider {
             a.dismiss();
           }
         });
-      });
+      });*/
   }
 
   getStorage(key: string) {

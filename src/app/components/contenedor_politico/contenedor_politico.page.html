@@ -24,11 +24,11 @@
           <img [src]="sRutaPoliticos.politico+item.foto" class="img_politico" />
         </ion-avatar>
         <div *ngIf="item.calificacion_usuario" class="posicion_estrellas">
-          <ion-icon
+          <!--<ion-icon
             *ngFor="let estrella of 'x'.repeat(item.calificacion_usuario[0]).split('')"
             name="star"
             color="warning"
-          ></ion-icon>
+          ></ion-icon>-->
         </div>
 
         <ion-avatar class="img_partido_politico">
@@ -40,7 +40,7 @@
         </ion-avatar>
       </div>
 
-      <h6 class="ion-text-center mt-5px  mb-5px  politicos_jerarquia_menor">
+      <h6 class="ion-text-center mt-5px mb-5px politicos_jerarquia_menor">
         {{item.nombre}}
       </h6>
       <div class="d-flex">
@@ -51,7 +51,7 @@
             ></ion-img>-->
         </div>
         <div>
-          <h6 class="ion-text-center mt-0  mb-0 texto_partido_politico cursiva">
+          <h6 class="ion-text-center mt-0 mb-0 texto_partido_politico cursiva">
             {{item.partido}}
           </h6>
         </div>

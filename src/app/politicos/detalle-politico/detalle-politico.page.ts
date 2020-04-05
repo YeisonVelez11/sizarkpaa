@@ -4,14 +4,14 @@ import { ServicesProvider } from "../../../providers/services";
 import {
   SERVICES,
   BASE_IMG,
-  RUTA_POLITICOS
+  RUTA_POLITICOS,
 } from "../../../config/webservices";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "detalle-politico",
   templateUrl: "detalle-politico.page.html",
-  styleUrls: ["detalle-politico.page.scss"]
+  styleUrls: ["detalle-politico.page.scss"],
 })
 export class DetallePoliticoPage implements OnInit {
   sRutaPoliticos: any = {};
@@ -41,9 +41,8 @@ export class DetallePoliticoPage implements OnInit {
       this.oPolitico = JSON.parse(params.queryParams);
       if (this.oPolitico.calificacion_usuario) {
         this.numestrellas =
-          parseInt(this.oPolitico.calificacion_usuario[0]) - 1;
+          parseInt(this.oPolitico.calificacion_usuario.estrellas) - 1;
       }
-      console.log(this.oPolitico);
       this.sRutaPoliticos.politico =
         RUTA_POLITICOS[this.oPolitico.cargo.toLowerCase()];
       this.sRutaPoliticos.partido = RUTA_POLITICOS["partidos"];
@@ -55,14 +54,31 @@ export class DetallePoliticoPage implements OnInit {
     });
   }
   fn_SetCalificacion(index: any) {
+    if (this.oPolitico.cargo == "Alcalde") {
+      if (this.oUsuario.comuna != this.oPolitico.comuna) {
+        this.ServicesProvider.fn_toast(
+          "error",
+          "No puedes calificar un Alcalde diferente al de tu comuna"
+        );
+        return false;
+      }
+    }
+    if (this.oPolitico.cargo == "Intendente") {
+      if (this.oUsuario.sigla_region != this.oPolitico.sigla_region) {
+        this.ServicesProvider.fn_toast(
+          "error",
+          "No puedes calificar un Intendente diferente al de tu región"
+        );
+        return false;
+      }
+    }
     this.numestrellas = index;
-    console.log(index + 1);
 
     this.ServicesProvider.preloaderOn();
     this.ServicesProvider.post(SERVICES.POLITICO_CALIFICAR, {
       _id: this.oPolitico._id,
       id_usuario: this.oUsuario._id,
-      estrellas: this.numestrellas + 1
+      estrellas: this.numestrellas + 1,
     }).then(
       (data: any) => {
         if (data.ok) {
@@ -83,7 +99,7 @@ export class DetallePoliticoPage implements OnInit {
   fn_getPolitico() {
     this.ServicesProvider.preloaderOn();
     this.ServicesProvider.post(SERVICES.POLITICO_DETALE, {
-      _id: this.oPolitico._id
+      _id: this.oPolitico._id,
     }).then(
       (data: any) => {
         if (data.ok) {

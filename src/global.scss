@@ -70,13 +70,48 @@ html {
 
   --background: url(./assets/Bg_Login.png) no-repeat center center / cover;
 }*/
+
+/* preloader v2 */
+.avatar {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 22px;
+  background: white;
+}
+.logo_circulo {
+  width: 100%;
+  height: auto;
+}
+.backdrop_preload {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999999999999999 !important;
+}
+.texto_cargando {
+  position: absolute;
+  top: 61%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+/*fin preloader 2*/
+
 .h-100 {
   height: 100%;
 }
 .h-50 {
   height: 50%;
 }
-
+.pre-wrap {
+  white-space: pre-wrap !important;
+}
 .altura_sin_cabecera {
   height: calc(100vh - 56px) !important;
 }
@@ -98,6 +133,9 @@ html {
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
+}
+.position-fixed {
+  position: fixed !important;
 }
 
 .centrado-perfecto {
@@ -241,7 +279,7 @@ html {
 }
 
 .border_top_gris {
-  border-top: 11px solid #f5f4fa;
+  border-top: 1px solid #f5f4fa;
 }
 
 .border_gris {
@@ -278,6 +316,9 @@ html {
 .d-flex.d-none,
 [hidden] {
   display: none !important;
+}
+.zindextoast {
+  z-index: 600079 !important;
 }
 
 .back-button {

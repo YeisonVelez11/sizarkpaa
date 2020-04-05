@@ -3,7 +3,7 @@ import {
   Validators,
   FormBuilder,
   FormGroup,
-  FormControl
+  FormControl,
 } from "@angular/forms";
 import { ServicesProvider } from "../../providers/services";
 import { SERVICES } from "../../config/webservices";
@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "perfil",
   templateUrl: "./perfil.page.html",
-  styleUrls: ["./perfil.page.scss"]
+  styleUrls: ["./perfil.page.scss"],
 })
 export class PerfilPage implements OnInit {
   oFormRegistro: any;
@@ -50,19 +50,25 @@ export class PerfilPage implements OnInit {
       nombres: [{ value: "", disabled: true }, [Validators.required]],
       region: [null, [Validators.required]],
       comuna: [null, [Validators.required]],
+      sigla_region: [null, []],
       correo: [
         { value: "", disabled: true },
         ,
-        [Validators.required, Validators.email]
+        [Validators.required, Validators.email],
       ],
-      contrasena: [null, [Validators.minLength(4)]]
+      contrasena: [null, [Validators.minLength(4)]],
     });
   }
   fn_LoadProvincias(value) {
     this.oFormRegistro.get("comuna").setValue(null);
 
-    this.aComunas = this.aRegiones.filter((region) => region.region == value);
-    console.log(this.aComunas);
+    this.aComunas = this.aRegiones.filter((region) => {
+      if (region.region == value) {
+        this.oFormRegistro.get("sigla_region").setValue(region.sigla_region);
+        console.log(region.sigla_region);
+      }
+      return region.region == value;
+    });
   }
   //funcion para ingresar un usuario
   fn_submit(formGroup: any) {
@@ -74,7 +80,8 @@ export class PerfilPage implements OnInit {
         /*nombres: this.oFormRegistro.get("nombres").value,*/
         correo: this.oFormRegistro.get("correo").value,
         region: this.oFormRegistro.get("region").value,
-        comuna: this.oFormRegistro.get("comuna").value
+        comuna: this.oFormRegistro.get("comuna").value,
+        sigla_region: this.oFormRegistro.get("sigla_region").value,
       };
       if (
         this.oFormRegistro.get("contrasena").valid &&

@@ -40,10 +40,21 @@
   ></contenedor_politico>
   <!-- fin diptuado-->
   <!-- alcaldia-->
+  <ion-item lines="none">
+    <ion-toggle
+      [(ngModel)]="mostrar_todos"
+      (ionChange)="fn_getPoliticos()"
+      color="grisoscuro"
+    ></ion-toggle>
+    <ion-label>Mostrar Todos</ion-label>
+  </ion-item>
 
   <!-- alcaldia-->
-  <div class="ion-activatable ripple-parent ion-margin-bottom">
-    <div class="d-flex w-100">
+  <div
+    class="ion-activatable ripple-parent ion-margin-bottom"
+    *ngIf="!mostrar_todos"
+  >
+    <div class="d-flex w-100 border_top_gris">
       <div class="w-100 border_right_gris">
         <contenedor_politico
           [sTipo]="'Intendente'"
@@ -64,6 +75,24 @@
       </div>
     </div>
   </div>
+
+  <ng-container *ngIf="mostrar_todos">
+    <contenedor_politico
+      [sTipo]="'Intendente'"
+      [tipoMinus]="'intendente'"
+      [aPolitico]="aPoliticos.Intendente?aPoliticos.Intendente:[]"
+      [iMostrarCantidadPoliticos]="false"
+      [quitar_border_bottom]="true"
+    ></contenedor_politico>
+
+    <contenedor_politico
+      [sTipo]="'Alcalde'"
+      [tipoMinus]="'alcalde'"
+      [aPolitico]="aPoliticos.Alcalde?aPoliticos.Alcalde:[]"
+      [iMostrarCantidadPoliticos]="false"
+      [quitar_border_bottom]="true"
+    ></contenedor_politico>
+  </ng-container>
 
   <!-- fin alcaldia-->
 </ion-content>
