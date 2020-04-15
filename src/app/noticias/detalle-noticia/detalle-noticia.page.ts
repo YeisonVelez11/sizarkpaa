@@ -5,21 +5,22 @@ import { ServicesProvider } from "../../../providers/services";
 import {
   SERVICES,
   BASE_IMG,
-  RUTA_POLITICOS
+  RUTA_POLITICOS,
+  RUTA_NOTICIAS,
 } from "../../../config/webservices";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "detalle-noticia",
   templateUrl: "detalle-noticia.page.html",
-  styleUrls: ["detalle-noticia.page.scss"]
+  styleUrls: ["detalle-noticia.page.scss"],
 })
 export class DetalleNoticiaPage implements OnInit {
   sRutaPoliticos: any = RUTA_POLITICOS;
 
   oNoticia: any = {};
   disable_riple = false; //fix, cuando se hace click en los iconos de like siempre aparece un riple, estoy lo evita
-  base_imagen = BASE_IMG;
+  base_imagen = RUTA_NOTICIAS;
   oUsuario: any = {};
   constructor(
     private ServicesProvider: ServicesProvider,
@@ -74,7 +75,7 @@ export class DetalleNoticiaPage implements OnInit {
       tipo: key,
       id_usuario: this.oUsuario._id,
       id_noticia: item._id,
-      borrar_tipos_like: item.borrar_tipos_like
+      borrar_tipos_like: item.borrar_tipos_like,
     }).then(
       (data: any) => {
         if (data.ok) {

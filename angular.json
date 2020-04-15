@@ -30,49 +30,49 @@
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
               },
-              "src/assets",
-              {
+              "src/assets"
+              /*{
                 "glob": "*",
-                "input": "../../krazis_back/server/assets/noticias",
+                "input": "../../krazis_back/server/uploads/noticias",
                 "output": "./assets/"
               },
               {
                 "glob": "*",
-                "input": "../../krazis_back/server/assets/alcaldes_image",
+                "input": "../../krazis_back/server/uploads/alcaldes_image",
                 "output": "./assets/"
               },
               {
                 "glob": "*",
-                "input": "../../krazis_back/server/assets/intendentes_image",
-                "output": "./assets/"
-              },
-
-              {
-                "glob": "*",
-                "input": "../../krazis_back/server/assets/partidos_image",
-                "output": "./assets/"
-              },
-              {
-                "glob": "*",
-                "input": "../../krazis_back/server/assets/diputados_image",
-                "output": "./assets/"
-              },
-              {
-                "glob": "*",
-                "input": "../../krazis_back/server/assets/ministros_image",
-                "output": "./assets/"
-              },
-              {
-                "glob": "*",
-                "input": "../../krazis_back/server/assets/senadores_image",
+                "input": "../../krazis_back/server/uploads/intendentes_image",
                 "output": "./assets/"
               },
 
               {
                 "glob": "*",
-                "input": "../../krazis_back/server/assets/presidente_image",
+                "input": "../../krazis_back/server/uploads/partidos_image",
                 "output": "./assets/"
-              }
+              },
+              {
+                "glob": "*",
+                "input": "../../krazis_back/server/uploads/diputados_image",
+                "output": "./assets/"
+              },
+              {
+                "glob": "*",
+                "input": "../../krazis_back/server/uploads/ministros_image",
+                "output": "./assets/"
+              },
+              {
+                "glob": "*",
+                "input": "../../krazis_back/server/uploads/senadores_image",
+                "output": "./assets/"
+              },
+
+              {
+                "glob": "*",
+                "input": "../../krazis_back/server/uploads/presidente_image",
+                "output": "./assets/"
+              }*/
             ],
             "styles": [
               {

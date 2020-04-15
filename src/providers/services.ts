@@ -104,7 +104,10 @@ export class ServicesProvider {
               //response = response.json();
               resolve(response);
             } catch (error) {
-              // console.log("[api-274]", response);
+              if (error.status == 401) {
+                this.router.navigate(["/login"]);
+                this.storage.clear();
+              }
               reject(response);
             }
           },
