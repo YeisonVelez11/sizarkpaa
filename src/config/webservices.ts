@@ -19,6 +19,8 @@ export const RUTA_POLITICOS = {
 export const SERVICES = {
   /* LOGIN */
   LOGIN: "/login_app",
+  LOGIN_FACEBOOK: "/login_facebook",
+  VERIFICAR_EXISTENCIA_CORREO: "/verificar_existencia_correo",
   REGISTRO: "/registro",
   ACTUALIZAr_USUARIO: "/actualizar_usuario_app",
   LISTAR_NOTICIA: "/noticia_listar_likes",

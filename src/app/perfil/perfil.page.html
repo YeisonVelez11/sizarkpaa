@@ -1,8 +1,8 @@
 <headerhome [titulo]="'Perfil'" [backbutton]="true"></headerhome>
 
-<ion-content class="fondo_krazis altura_sin_cabecera">
+<ion-content class="altura_sin_cabecera">
   <div
-    class="formulario  d-flex ion-align-items-center ion-justify-content-center ion-margin-top"
+    class="formulario d-flex ion-align-items-center ion-justify-content-center ion-margin-top"
     [ngClass]="{'d-none': mostrar_formulario}"
   >
     <form [formGroup]="oFormRegistro" class="w-80">
@@ -40,9 +40,7 @@
           [ngStyle]="{'-webkit-text-security':show_contransena?'disc':'none'}"
         ></ion-input>
         <ion-img
-          style="width: 26px;
-            /* height: 26px; */
-            margin-top: 16px"
+          style="width: 26px; /* height: 26px; */ margin-top: 16px;"
           (click)="show_contransena=!show_contransena"
           src="./assets/icono_view.png"
           slot="end"

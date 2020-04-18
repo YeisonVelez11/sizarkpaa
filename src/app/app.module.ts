@@ -12,6 +12,7 @@ import { IonicStorageModule } from "@ionic/storage";
 import { HttpClientModule } from "@angular/common/http";
 import { ServicesProvider } from "../providers/services";
 import { GlobalProvider } from "../providers/globalvariable";
+import { Facebook } from "@ionic-native/facebook/ngx";
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -20,15 +21,16 @@ import { GlobalProvider } from "../providers/globalvariable";
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     ServicesProvider,
-    GlobalProvider
+    Facebook,
+    GlobalProvider,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

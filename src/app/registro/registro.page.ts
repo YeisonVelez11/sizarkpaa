@@ -18,6 +18,8 @@ export class RegistroPage implements OnInit {
   oFormRegistro: any;
   aRegiones: any = [];
   aComunas: any = [];
+  screen_modal: boolean = false;
+
   show_contransena: boolean = true;
   ngOnInit() {
     //this.ServicesProvider.preloadOn();
@@ -47,7 +49,6 @@ export class RegistroPage implements OnInit {
     this.aComunas = this.aRegiones.filter((region) => {
       if (region.region == value) {
         this.oFormRegistro.get("sigla_region").setValue(region.sigla_region);
-        console.log(region.sigla_region);
       }
 
       return region.region == value;
@@ -63,6 +64,7 @@ export class RegistroPage implements OnInit {
         correo: this.oFormRegistro.get("correo").value.toLowerCase().trim(),
         contrasena: this.oFormRegistro.get("contrasena").value,
         sigla_region: this.oFormRegistro.get("sigla_region").value,
+        facebook: false,
       };
       this.ServicesProvider.preloaderOn();
       this.ServicesProvider.post(SERVICES.REGISTRO, oUsuario).then(

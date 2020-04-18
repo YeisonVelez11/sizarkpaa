@@ -1,6 +1,6 @@
 <headerhome [titulo]="'Registro'" [backbutton]="true"></headerhome>
 
-<ion-content class="has-header fondo_krazis altura_sin_cabecera h-100">
+<ion-content class="has-header altura_sin_cabecera h-100">
   <div
     class="d-flex ion-align-items-center ion-justify-content-center ion-margin-top"
   >
@@ -39,9 +39,7 @@
           [ngStyle]="{'-webkit-text-security':show_contransena?'disc':'none'}"
         ></ion-input>
         <ion-img
-          style="width: 26px;
-          /* height: 26px; */
-          margin-top: 16px"
+          style="width: 26px; /* height: 26px; */ margin-top: 16px;"
           (click)="show_contransena=!show_contransena"
           src="./assets/icono_view.png"
           slot="end"

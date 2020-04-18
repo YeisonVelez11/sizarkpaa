@@ -1,4 +1,5 @@
-<ion-content class="fondo_krazis ">
+<ion-content>
+  <!-- class="fondo_krazis"-->
   <div class="h-100 d-flex ion-align-items-center ion-justify-content-center">
     <form [formGroup]="oFormLogin" class="w-80">
       <ion-img src="./assets/logo.png" class="logo"></ion-img>
@@ -24,9 +25,7 @@
           [ngStyle]="{'-webkit-text-security':show_contransena?'disc':'none'}"
         ></ion-input>
         <ion-img
-          style="width: 26px;
-          /* height: 26px; */
-          margin-top: 16px"
+          style="width: 26px; /* height: 26px; */ margin-top: 16px;"
           (click)="show_contransena=!show_contransena"
           src="./assets/icono_view.png"
           slot="end"
@@ -56,8 +55,8 @@
           expand="full"
           color="primary"
           class="ion-text-lowercase"
-          style="height: 43px;
-          font-size: 16px !important;"
+          style="height: 43px; font-size: 16px !important;"
+          (click)="fn_loginFacebook()"
         >
           Ingresa con facebook
           <ion-icon name="logo-facebook" color="light" slot="start"></ion-icon>
@@ -72,6 +71,100 @@
             <span class="ion-text-bold underline">aquí</span>
           </ion-note>
           <ion-ripple-effect></ion-ripple-effect>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div
+    class="slide_container d-flex ion-justify-content-center ion-align-items-center flex-column"
+    [ngClass]="{'slide_animation_origen': screen_modal}"
+  >
+    <ion-img
+      src="./assets/logo.png"
+      style="height: 200px; height: 200px;"
+    ></ion-img>
+
+    <ion-note class="region d-block w-100 ion-text-center"
+      >Estas a un paso de completar tu registro, por favor selecciona tu región
+      y comuna</ion-note
+    >
+
+    <form [formGroup]="oFormRegistro" class="w-80">
+      <div class="w-100 h-100">
+        <ion-item mode="md" class="ion-margin-top">
+          <ion-label>Región</ion-label>
+          <ion-icon name="map" color="grisoscuro" slot="start"></ion-icon>
+
+          <ion-select
+            (ionChange)="fn_LoadProvincias($event.detail.value)"
+            formControlName="region"
+            value="brown"
+            okText="Aceptar"
+            cancelText="Cancelar"
+          >
+            <ion-select-option
+              [value]="item.region"
+              *ngFor="let item of aRegiones"
+              >{{item.region}}</ion-select-option
+            >
+          </ion-select>
+          <span
+            class="texto-pequeno error pos_texto_error"
+            *ngIf="oFormRegistro.controls.region.invalid && (oFormRegistro.controls.region.dirty && oFormRegistro.controls.region.touched)"
+            >Este campo es requerido</span
+          >
+        </ion-item>
+
+        <ion-note *ngIf="oFormRegistro.controls.region.valid" class="region"
+          >{{oFormRegistro.controls.region.value}}</ion-note
+        >
+
+        <ion-item mode="md" class="ion-margin-top">
+          <ion-label>Comuna</ion-label>
+          <ion-icon name="location" color="grisoscuro" slot="start"></ion-icon>
+
+          <ion-select
+            formControlName="comuna"
+            value="brown"
+            okText="Aceptar"
+            cancelText="Cancelar"
+          >
+            <ion-select-option
+              [value]="item.comuna"
+              *ngFor="let item of aComunas[0]?.comunas"
+              >{{item.comuna}}</ion-select-option
+            >
+          </ion-select>
+          <span
+            class="texto-pequeno error pos_texto_error"
+            *ngIf="oFormRegistro.controls.comuna.invalid && (oFormRegistro.controls.comuna.dirty && oFormRegistro.controls.comuna.touched)"
+            >Este campo es requerido</span
+          >
+        </ion-item>
+        <ion-note *ngIf="oFormRegistro.controls.comuna.valid" class="region"
+          >{{oFormRegistro.controls.comuna.value}}</ion-note
+        >
+
+        <div
+          class="d-flex ion-justify-content-center ion-margin-top flex-column"
+        >
+          <ion-button
+            round="true"
+            size="large"
+            color="grisoscuro"
+            expand="block"
+            (click)="fn_submitFacebook(oFormRegistro)"
+            class="w-100 ion-text-capitalize"
+          >
+            <ion-icon
+              name="log-in-outline"
+              color="light"
+              slot="start"
+            ></ion-icon>
+
+            Crear Cuenta</ion-button
+          >
         </div>
       </div>
     </form>
