@@ -1,0 +1,4 @@
+
+
+ ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="223635692239370" --variable APP_NAME="Kracis App" --save
+

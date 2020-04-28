@@ -176,15 +176,9 @@ export class LoginPage implements OnInit {
               this.ServicesProvider.setStorage("_knt", datos.token),
               this.ServicesProvider.setStorage("usuario", datos.usuario),
             ]).then((data) => {
-              //this.router.navigate(["/tabs/noticias"]);
+              this.screen_modal = false;
 
-              this.router
-                .navigateByUrl("/tabs/noticias", {
-                  skipLocationChange: true,
-                })
-                .then(() => {
-                  this.router.navigate(["/tabs/noticias"]);
-                });
+              this.router.navigate(["/tabs/noticias"]);
             });
           } else {
             this.ServicesProvider.fn_toast("error", datos.err.message);
