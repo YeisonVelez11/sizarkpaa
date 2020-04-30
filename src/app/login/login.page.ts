@@ -5,6 +5,8 @@ import {
   FormGroup,
   FormControl,
 } from "@angular/forms";
+import * as moment from "moment";
+moment.locale("es");
 import { ServicesProvider } from "../../providers/services";
 import { SERVICES } from "../../config/webservices";
 import { Router } from "@angular/router";
@@ -17,6 +19,7 @@ var env;
   styleUrls: ["./login.page.scss"],
 })
 export class LoginPage implements OnInit {
+  sFechaMax: String;
   oFormLogin: any;
   oFormRegistro: any;
   aRegiones: any = [];
@@ -28,6 +31,7 @@ export class LoginPage implements OnInit {
     this.ServicesProvider.get("./assets/data/regiones.json").then((data) => {
       this.aRegiones = data;
     });
+    this.sFechaMax = moment().subtract(12, "years").format("YYYY-MM-DD");
   }
 
   constructor(
@@ -46,6 +50,8 @@ export class LoginPage implements OnInit {
       comuna: [null, [Validators.required]],
       correo: [null, []],
       sigla_region: [null, []],
+      genero: [null, [Validators.required]],
+      fecha_nacimiento: [null, [Validators.required]],
     });
     this.oFormRegistro.controls.comuna.disable();
     env = this;
@@ -101,13 +107,7 @@ export class LoginPage implements OnInit {
 
   fn_loginFacebook() {
     this.facebook
-      .login([
-        "public_profile",
-        "user_friends",
-        "email",
-        "user_gender",
-        "user_birthday",
-      ])
+      .login(["public_profile", "email", "user_gender", "user_birthday"])
       .then((response: FacebookLoginResponse) => {
         let userId = response.authResponse.userID;
         let fbToken = response.authResponse.accessToken;
@@ -134,8 +134,15 @@ export class LoginPage implements OnInit {
                       env.router.navigate(["/tabs/noticias"]);
                     });
                   } else {
+                    console.log(user);
                     env.oFormRegistro.get("nombres").setValue(user.name);
                     env.oFormRegistro.get("correo").setValue(user.email);
+                    /*if (user.gender) {
+                      env.oFormRegistro.get("genero").setValue(user.gender);
+                    }
+                    if (user.birthday) {
+                      env.oFormRegistro.get("birthday").setValue(user.birthday);
+                    }*/
                     env.screen_modal = true;
                   }
                 } else {
@@ -167,6 +174,8 @@ export class LoginPage implements OnInit {
         correo: this.oFormRegistro.get("correo").value.toLowerCase().trim(),
         sigla_region: this.oFormRegistro.get("sigla_region").value,
         facebook: true,
+        genero: this.oFormRegistro.get("genero").value,
+        fecha_nacimiento: this.oFormRegistro.get("fecha_nacimiento").value,
       };
       this.ServicesProvider.preloaderOn();
       this.ServicesProvider.post(SERVICES.LOGIN_FACEBOOK, oUsuario).then(

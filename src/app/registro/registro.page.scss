@@ -38,3 +38,42 @@ ion-button {
   font-size: 18px !important;
   height: 60px;
 }
+
+.slide_container {
+  height: 100vh;
+  width: 100vw;
+  background: white;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  transform: translate(0, -100%);
+  transition: all 0.5s ease-in-out;
+  z-index: 99;
+  overflow: auto;
+}
+
+.slide_animation_origen {
+  transform: translate(0, 0%);
+}
+
+.toolbar {
+  height: 56px;
+  background: var(--ion-color-grisoscuro);
+  width: 100%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  color: white;
+}
+
+.button_close_wizzard {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 999999;
+}
+.icon_close_terminos {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 30px;
+  color: white;
+}

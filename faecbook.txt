@@ -2,3 +2,75 @@
 
  ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="223635692239370" --variable APP_NAME="Kracis App" --save
 
+kracisapp@gmail.com
+
+clavebaja
+
+fix plugin facebook
+esto no lo probe pero es interesannte
+https://stackoverflow.com/questions/60024950/fbsdkcorekit-fbsdkcorekit-h-file-not-found-with-cordova-ionic-4
+
+este es el repo oficial de los problemas
+https://github.com/jeduan/cordova-plugin-facebook4/issues?utf8=%E2%9C%93&q=FBSDKCoreKit.h
+
+seguir esta guia 
+https://github.com/jeduan/cordova-plugin-facebook4/blob/master/docs/ios/README.md
+
+parte de la solución:
+I was having the same problem and maybe i found a way to fix it.
+
+As it was mentioned in #811, the problem was missing Facebook SDKs, which should be specified in PodFile
+
+Switching those lines in the config.xml of this plugin:
+
+       <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git"/>
+            </config>
+            <pods use-frameworks="true">
+                <pod name="FBSDKCoreKit" spec="5.7.0"/>
+                <pod name="FBSDKLoginKit" spec="5.7.0"/>
+                <pod name="FBSDKShareKit" spec="5.7.0"/>
+            </pods>
+        </podspec>
+
+fot that:
+
+        <framework src="FBSDKCoreKit" type="podspec" spec="5.7.0" />
+        <framework src="FBSDKLoginKit" type="podspec" spec="5.7.0" />
+        <framework src="FBSDKShareKit" type="podspec" spec="5.7.0" />
+
+makes the SDKs appear in the PodFile, as it should.
+dentro del plugin.xml de la carpeta del plugin de facebook
+
+ejecutar no el archivo normal de xcode, el otro e instalar pods
+pod install
+
+si no se crea el archivo podfile en platform/ios toca crearlo
+
+I was having the same problem and maybe i found a way to fix it.
+
+As it was mentioned in #811, the problem was missing Facebook SDKs, which should be specified in PodFile
+
+Switching those lines in the config.xml of this plugin:
+
+       <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git"/>
+            </config>
+            <pods use-frameworks="true">
+                <pod name="FBSDKCoreKit" spec="5.7.0"/>
+                <pod name="FBSDKLoginKit" spec="5.7.0"/>
+                <pod name="FBSDKShareKit" spec="5.7.0"/>
+            </pods>
+        </podspec>
+
+fot that:
+
+        <framework src="FBSDKCoreKit" type="podspec" spec="5.7.0" />
+        <framework src="FBSDKLoginKit" type="podspec" spec="5.7.0" />
+        <framework src="FBSDKShareKit" type="podspec" spec="5.7.0" />
+
+makes the SDKs appear in the PodFile, as it should.
+
+

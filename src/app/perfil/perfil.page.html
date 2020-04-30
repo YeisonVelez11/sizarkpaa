@@ -7,7 +7,7 @@
   >
     <form [formGroup]="oFormRegistro" class="w-80">
       <ion-item mode="md">
-        <ion-label position="floating">Nombres</ion-label>
+        <ion-label position="floating">Nombres y Apellidos</ion-label>
         <ion-icon name="person" color="grisoscuro" slot="start"></ion-icon>
 
         <ion-input formControlName="nombres" type="text"></ion-input>
@@ -107,6 +107,61 @@
         >{{oFormRegistro.controls.comuna.value}}</ion-note
       >
 
+      <ion-note class="d-block ion-margin-top"> Seleccione el Género</ion-note>
+
+      <ion-radio-group
+        formControlName="genero"
+        class="p-relative d-flex flex-row ion-align-items-center ion-justify-content-center"
+      >
+        <ion-label class="ion-padding-genero">Masculino</ion-label>
+        <ion-radio
+          color="grisoscuro"
+          disabled="true"
+          item-left
+          value="masculino"
+        ></ion-radio>
+        <ion-label class="ion-padding-genero">Femenino</ion-label>
+        <ion-radio
+          color="grisoscuro"
+          disabled="true"
+          item-left
+          value="femenino"
+        ></ion-radio>
+        <ion-label class="ion-padding-genero">No binario</ion-label>
+        <ion-radio
+          color="grisoscuro"
+          disabled="true"
+          item-left
+          value="no binario"
+        ></ion-radio>
+        <span
+          class="texto-pequeno error pos_texto_error"
+          *ngIf="oFormRegistro.controls.genero.invalid && (oFormRegistro.controls.genero.dirty || oFormRegistro.controls.genero.touched)"
+          >Este campo es requerido</span
+        >
+      </ion-radio-group>
+
+      <ion-item>
+        <ion-label>Fecha de Nacimiento</ion-label>
+        <ion-icon
+          name="calendar-outline"
+          color="grisoscuro"
+          slot="start"
+        ></ion-icon>
+        <ion-datetime
+          displayFormat="YYYY/MM/DD"
+          formControlName="fecha_nacimiento"
+          [max]="sFechaMax"
+          cancel-text="Cancelar"
+          done-text="Hecho"
+        ></ion-datetime>
+        <span
+          class="texto-pequeno error pos_texto_error"
+          *ngIf="oFormRegistro.controls.fecha_nacimiento.invalid && (oFormRegistro.controls.fecha_nacimiento.dirty || oFormRegistro.controls.fecha_nacimiento.touched)"
+          >Este campo es requerido</span
+        >
+      </ion-item>
+
       <div class="d-flex ion-justify-content-center ion-margin-top flex-row">
         <ion-button
           round="true"
@@ -159,6 +214,24 @@
       <ion-item mode="md">
         <ion-icon name="location" color="grisoscuro" slot="start"></ion-icon>
         <ion-label>{{ oFormRegistro.get("comuna").value}}</ion-label>
+      </ion-item>
+      <ion-item mode="md">
+        <ion-icon
+          name="transgender-outline"
+          color="grisoscuro"
+          slot="start"
+        ></ion-icon>
+        <ion-label class="ion-text-capitalize"
+          >{{ oFormRegistro.get("genero").value}}</ion-label
+        >
+      </ion-item>
+      <ion-item mode="md">
+        <ion-icon
+          name="calendar-outline"
+          color="grisoscuro"
+          slot="start"
+        ></ion-icon>
+        <ion-label>{{ oFormRegistro.get("fecha_nacimiento").value}}</ion-label>
       </ion-item>
 
       <ion-button

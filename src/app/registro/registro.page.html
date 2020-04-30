@@ -6,13 +6,13 @@
   >
     <form [formGroup]="oFormRegistro" class="w-80">
       <ion-item mode="md">
-        <ion-label position="floating">Nombres</ion-label>
+        <ion-label position="floating">Nombres y Apellidos</ion-label>
         <ion-icon name="person" color="grisoscuro" slot="start"></ion-icon>
 
         <ion-input formControlName="nombres" type="text"></ion-input>
         <span
           class="texto-pequeno error pos_texto_error"
-          *ngIf="oFormRegistro.controls.nombres.invalid && (oFormRegistro.controls.nombres.dirty && oFormRegistro.controls.nombres.touched)"
+          *ngIf="oFormRegistro.controls.nombres.invalid && (oFormRegistro.controls.nombres.dirty || oFormRegistro.controls.nombres.touched)"
           >No es un nombre válido</span
         >
       </ion-item>
@@ -24,7 +24,7 @@
         <ion-input formControlName="correo" type="email"></ion-input>
         <span
           class="texto-pequeno error pos_texto_error"
-          *ngIf="oFormRegistro.controls.correo.invalid && (oFormRegistro.controls.correo.dirty && oFormRegistro.controls.correo.touched)"
+          *ngIf="oFormRegistro.controls.correo.invalid && (oFormRegistro.controls.correo.dirty || oFormRegistro.controls.correo.touched)"
           >Correo inválido</span
         >
       </ion-item>
@@ -47,8 +47,8 @@
         ></ion-img>
         <span
           class="texto-pequeno error pos_texto_error"
-          *ngIf="oFormRegistro.controls.contrasena.invalid && (oFormRegistro.controls.contrasena.dirty && oFormRegistro.controls.contrasena.touched)"
-          >Este campo es requerido y mínimo de 6 caracteres</span
+          *ngIf="oFormRegistro.controls.contrasena.invalid && (oFormRegistro.controls.contrasena.dirty || oFormRegistro.controls.contrasena.touched)"
+          >Mínimo de 6 caracteres</span
         >
       </ion-item>
 
@@ -71,7 +71,7 @@
         </ion-select>
         <span
           class="texto-pequeno error pos_texto_error"
-          *ngIf="oFormRegistro.controls.region.invalid && (oFormRegistro.controls.region.dirty && oFormRegistro.controls.region.touched)"
+          *ngIf="oFormRegistro.controls.region.invalid && (oFormRegistro.controls.region.dirty || oFormRegistro.controls.region.touched)"
           >Este campo es requerido</span
         >
       </ion-item>
@@ -98,13 +98,53 @@
         </ion-select>
         <span
           class="texto-pequeno error pos_texto_error"
-          *ngIf="oFormRegistro.controls.comuna.invalid && (oFormRegistro.controls.comuna.dirty && oFormRegistro.controls.comuna.touched)"
+          *ngIf="oFormRegistro.controls.comuna.invalid && (oFormRegistro.controls.comuna.dirty || oFormRegistro.controls.comuna.touched)"
           >Este campo es requerido</span
         >
       </ion-item>
       <ion-note *ngIf="oFormRegistro.controls.comuna.valid" class="region"
         >{{oFormRegistro.controls.comuna.value}}</ion-note
       >
+
+      <ion-note class="d-block ion-margin-top"> Seleccione el Género</ion-note>
+
+      <ion-radio-group
+        formControlName="genero"
+        class="p-relative d-flex flex-row ion-align-items-center ion-justify-content-center"
+      >
+        <ion-label class="ion-padding-genero">Masculino</ion-label>
+        <ion-radio color="grisoscuro" item-left value="masculino"></ion-radio>
+        <ion-label class="ion-padding-genero">Femenino</ion-label>
+        <ion-radio color="grisoscuro" item-left value="femenino"></ion-radio>
+        <ion-label class="ion-padding-genero">No binario</ion-label>
+        <ion-radio color="grisoscuro" item-left value="no binario"></ion-radio>
+        <span
+          class="texto-pequeno error pos_texto_error"
+          *ngIf="oFormRegistro.controls.genero.invalid && (oFormRegistro.controls.genero.dirty || oFormRegistro.controls.genero.touched)"
+          >Este campo es requerido</span
+        >
+      </ion-radio-group>
+
+      <ion-item>
+        <ion-label>Fecha de Nacimiento</ion-label>
+        <ion-icon
+          name="calendar-outline"
+          color="grisoscuro"
+          slot="start"
+        ></ion-icon>
+        <ion-datetime
+          displayFormat="YYYY/MM/DD"
+          formControlName="fecha_nacimiento"
+          [max]="sFechaMax"
+          cancel-text="Cancelar"
+          done-text="Hecho"
+        ></ion-datetime>
+        <span
+          class="texto-pequeno error pos_texto_error"
+          *ngIf="oFormRegistro.controls.fecha_nacimiento.invalid && (oFormRegistro.controls.fecha_nacimiento.dirty || oFormRegistro.controls.fecha_nacimiento.touched)"
+          >Este campo es requerido</span
+        >
+      </ion-item>
 
       <div class="d-flex ion-justify-content-center ion-margin-top flex-column">
         <ion-button
@@ -122,8 +162,34 @@
       </div>
       <ion-note class="condiciones ion-text-center"
         >Al crear una cuenta, tu estas aceptando
-        <span class="underline">Nuestros Términos y Condiciones</span></ion-note
+        <span class="underline" (click)="screen_condiciones=true;"
+          >Nuestros Términos y Condiciones</span
+        ></ion-note
       >
     </form>
   </div>
+
+  <!-- terminos y condiciones-->
+  <div
+    class="slide_container"
+    [ngClass]="{'slide_animation_origen': screen_condiciones}"
+  >
+    <div
+      class="toolbar d-flex ion-justify-content-center ion-align-items-center"
+    >
+      <p class="ion-no-margin ion-no-padding">
+        Términos y Condiciones
+      </p>
+    </div>
+    <div class="background-morado-top-corto bg_header"></div>
+    <ion-icon
+      name="close-circle-outline"
+      (click)="screen_condiciones=false"
+      class="icon_close_terminos"
+    ></ion-icon>
+    <p class="ion-padding" style="white-space: pre-wrap !important;">
+      {{sTerminos}}
+    </p>
+  </div>
+  <!-- fin terminos y condiciones-->
 </ion-content>

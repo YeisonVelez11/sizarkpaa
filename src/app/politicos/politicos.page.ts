@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ServicesProvider } from "../../providers/services";
-import { SERVICES, BASE_IMG, RUTA_POLITICOS } from "../../config/webservices";
+import { SERVICES } from "../../config/webservices";
 @Component({
   selector: "app-politicos",
   templateUrl: "politicos.page.html",

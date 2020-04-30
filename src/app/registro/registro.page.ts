@@ -8,7 +8,8 @@ import {
 import { ServicesProvider } from "../../providers/services";
 import { SERVICES } from "../../config/webservices";
 import { Router } from "@angular/router";
-
+import * as moment from "moment";
+moment.locale("es");
 @Component({
   selector: "registro",
   templateUrl: "./registro.page.html",
@@ -19,6 +20,10 @@ export class RegistroPage implements OnInit {
   aRegiones: any = [];
   aComunas: any = [];
   screen_modal: boolean = false;
+  screen_condiciones: boolean = false; //muestra terminos y condiciones
+  sTerminos: String = "";
+
+  sFechaMax: String;
 
   show_contransena: boolean = true;
   ngOnInit() {
@@ -26,6 +31,8 @@ export class RegistroPage implements OnInit {
     this.ServicesProvider.get("./assets/data/regiones.json").then((data) => {
       this.aRegiones = data;
     });
+    this.sFechaMax = moment().subtract(12, "years").format("YYYY-MM-DD");
+    this.fn_getTerminos();
   }
 
   constructor(
@@ -40,9 +47,30 @@ export class RegistroPage implements OnInit {
       correo: [null, [Validators.required, Validators.email]],
       sigla_region: [null, []],
       contrasena: [null, [Validators.required, Validators.minLength(5)]],
+      genero: [null, [Validators.required]],
+      fecha_nacimiento: [null, [Validators.required]],
     });
     this.oFormRegistro.controls.comuna.disable();
   }
+  fn_getTerminos() {
+    this.ServicesProvider.preloaderOn();
+    this.ServicesProvider.post(SERVICES.TERMINOS_Y_CONDICIONES, {}).then(
+      (datos: any) => {
+        this.ServicesProvider.fn_validarRespuestaBack(datos).then(
+          //si es ok
+          (data: any) => {
+            this.sTerminos = datos.data;
+            this.ServicesProvider.preloaderOff();
+          }
+        );
+      },
+      (_fail) => {
+        this.ServicesProvider.fn_popupError();
+        this.ServicesProvider.preloaderOff();
+      }
+    );
+  }
+
   fn_LoadProvincias(value) {
     this.oFormRegistro.get("comuna").setValue(null);
     this.oFormRegistro.controls.comuna.enable();
@@ -65,6 +93,8 @@ export class RegistroPage implements OnInit {
         contrasena: this.oFormRegistro.get("contrasena").value,
         sigla_region: this.oFormRegistro.get("sigla_region").value,
         facebook: false,
+        genero: this.oFormRegistro.get("genero").value,
+        fecha_nacimiento: this.oFormRegistro.get("fecha_nacimiento").value,
       };
       this.ServicesProvider.preloaderOn();
       this.ServicesProvider.post(SERVICES.REGISTRO, oUsuario).then(

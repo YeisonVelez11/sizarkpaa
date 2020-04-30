@@ -8,7 +8,8 @@ import {
 import { ServicesProvider } from "../../providers/services";
 import { SERVICES } from "../../config/webservices";
 import { Router } from "@angular/router";
-
+import * as moment from "moment";
+moment.locale("es");
 @Component({
   selector: "perfil",
   templateUrl: "./perfil.page.html",
@@ -21,6 +22,8 @@ export class PerfilPage implements OnInit {
   show_contransena: boolean = true;
   oUsuario: any = {};
   mostrar_formulario: boolean = true;
+  sFechaMax: String;
+
   ngOnInit() {
     //this.ServicesProvider.preloadOn();
     this.ServicesProvider.get("./assets/data/regiones.json").then((data) => {
@@ -29,9 +32,13 @@ export class PerfilPage implements OnInit {
 
     this.ServicesProvider.getStorage("usuario").then((data) => {
       this.oUsuario = data;
-      console.log(this.oUsuario);
       this.oFormRegistro.get("nombres").setValue(this.oUsuario.nombres);
       this.oFormRegistro.get("region").setValue(this.oUsuario.region);
+      this.oFormRegistro
+        .get("fecha_nacimiento")
+        .setValue(moment(this.oUsuario.fecha_nacimiento).format("YYYY-MM-DD"));
+      this.oFormRegistro.get("genero").setValue(this.oUsuario.genero);
+
       this.fn_LoadProvincias(this.oUsuario.region);
 
       setTimeout(() => {
@@ -56,8 +63,11 @@ export class PerfilPage implements OnInit {
         ,
         [Validators.required, Validators.email],
       ],
-      contrasena: [null, [Validators.minLength(4)]],
+      contrasena: [null, [Validators.minLength(5)]],
+      genero: [{ value: "", disabled: true }, [Validators.required]],
+      fecha_nacimiento: [{ value: "", disabled: true }, [Validators.required]],
     });
+    this.sFechaMax = moment().subtract(12, "years").format("YYYY-MM-DD");
   }
   fn_LoadProvincias(value) {
     this.oFormRegistro.get("comuna").setValue(null);
@@ -82,6 +92,8 @@ export class PerfilPage implements OnInit {
         region: this.oFormRegistro.get("region").value,
         comuna: this.oFormRegistro.get("comuna").value,
         sigla_region: this.oFormRegistro.get("sigla_region").value,
+        genero: this.oFormRegistro.get("genero").value,
+        fecha_nacimiento: this.oFormRegistro.get("fecha_nacimiento").value,
       };
       if (
         this.oFormRegistro.get("contrasena").valid &&

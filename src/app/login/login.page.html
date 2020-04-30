@@ -146,6 +146,53 @@
           >{{oFormRegistro.controls.comuna.value}}</ion-note
         >
 
+        <ion-note class="d-block ion-margin-top">
+          Seleccione el Género</ion-note
+        >
+
+        <ion-radio-group
+          formControlName="genero"
+          class="p-relative d-flex flex-row ion-align-items-center ion-justify-content-center"
+        >
+          <ion-label class="ion-padding-genero">Masculino</ion-label>
+          <ion-radio color="grisoscuro" item-left value="masculino"></ion-radio>
+          <ion-label class="ion-padding-genero">Femenino</ion-label>
+          <ion-radio color="grisoscuro" item-left value="femenino"></ion-radio>
+          <ion-label class="ion-padding-genero">No binario</ion-label>
+          <ion-radio
+            color="grisoscuro"
+            item-left
+            value="no binario"
+          ></ion-radio>
+
+          <span
+            class="texto-pequeno error pos_texto_error"
+            *ngIf="oFormRegistro.controls.genero.invalid && (oFormRegistro.controls.genero.dirty || oFormRegistro.controls.genero.touched)"
+            >Este campo es requerido</span
+          >
+        </ion-radio-group>
+
+        <ion-item>
+          <ion-label>Fecha de Nacimiento</ion-label>
+          <ion-icon
+            name="calendar-outline"
+            color="grisoscuro"
+            slot="start"
+          ></ion-icon>
+          <ion-datetime
+            displayFormat="YYYY/MM/DD"
+            formControlName="fecha_nacimiento"
+            [max]="sFechaMax"
+            cancel-text="Cancelar"
+            done-text="Hecho"
+          ></ion-datetime>
+          <span
+            class="texto-pequeno error pos_texto_error"
+            *ngIf="oFormRegistro.controls.fecha_nacimiento.invalid && (oFormRegistro.controls.fecha_nacimiento.dirty || oFormRegistro.controls.fecha_nacimiento.touched)"
+            >Este campo es requerido</span
+          >
+        </ion-item>
+
         <div
           class="d-flex ion-justify-content-center ion-margin-top flex-column"
         >

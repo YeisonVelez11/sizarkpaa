@@ -29,4 +29,5 @@ export const SERVICES = {
   POLITICO_CALIFICAR: "/politico_calificar",
   POLITICO_LISTAR: "/politico_listar_todos",
   POLITICO_DETALE: "/politico_detalle",
+  TERMINOS_Y_CONDICIONES: "/terminos_condiciones",
 };
