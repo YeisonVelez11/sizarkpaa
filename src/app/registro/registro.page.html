@@ -113,11 +113,26 @@
         class="p-relative d-flex flex-row ion-align-items-center ion-justify-content-center"
       >
         <ion-label class="ion-padding-genero">Masculino</ion-label>
-        <ion-radio color="grisoscuro" item-left value="masculino"></ion-radio>
+        <ion-radio
+          color="grisoscuro"
+          item-left
+          mode="md"
+          value="masculino"
+        ></ion-radio>
         <ion-label class="ion-padding-genero">Femenino</ion-label>
-        <ion-radio color="grisoscuro" item-left value="femenino"></ion-radio>
+        <ion-radio
+          color="grisoscuro"
+          item-left
+          mode="md"
+          value="femenino"
+        ></ion-radio>
         <ion-label class="ion-padding-genero">No binario</ion-label>
-        <ion-radio color="grisoscuro" item-left value="no binario"></ion-radio>
+        <ion-radio
+          color="grisoscuro"
+          item-left
+          mode="md"
+          value="no binario"
+        ></ion-radio>
         <span
           class="texto-pequeno error pos_texto_error"
           *ngIf="oFormRegistro.controls.genero.invalid && (oFormRegistro.controls.genero.dirty || oFormRegistro.controls.genero.touched)"
