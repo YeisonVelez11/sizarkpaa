@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@auth0/angular-jwt": "^4.0.0",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/facebook": "^5.24.0",
     "@ionic-native/splash-screen": "^5.0.0",
@@ -27,6 +29,7 @@
     "@ionic/angular": "^5.0.0",
     "@ionic/storage": "^2.2.0",
     "cordova-android": "^8.1.0",
+    "cordova-ios": "5.1.1",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-facebook4": "^6.4.0",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
@@ -42,12 +45,12 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@babel/compat-data": "~7.8.0",
     "@angular-devkit/build-angular": "~0.803.20",
-    "@angular/cli": "~8.3.23",
+    "@angular/cli": "8.3.26",
     "@angular/compiler": "~8.2.14",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
+    "@babel/compat-data": "~7.9.0",
     "@ionic/angular-toolkit": "^2.1.1",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
@@ -85,7 +88,8 @@
       }
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
